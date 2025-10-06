@@ -1,0 +1,7 @@
+
+*.o
+*.obj
+*.map
+Debug
+Release
+.settings/language.settings.xml
