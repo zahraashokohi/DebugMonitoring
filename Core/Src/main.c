@@ -81,8 +81,8 @@ bool debug_monitor_enable(void) {
     CoreDebug->DEMCR |= CoreDebug_DEMCR_MON_EN_Msk;
 
     // تنظیم اولویت DebugMon Handler → پایین‌ترین مقدار (0xFF)
-    HAL_NVIC_SetPriority(DebugMonitor_IRQn, 0,0);
-
+   // HAL_NVIC_SetPriority(DebugMonitor_IRQn, 0,0);
+    NVIC_SetPriority(DebugMonitor_IRQn, 0xFF);
     return 1;
 }
 void Enable_DWT_Watchpoint(void)
@@ -158,8 +158,9 @@ int main(void)
   while (1)
   {
   	 __asm("BKPT #0");
+
+		 HAL_Delay(500);
 		 HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_3);
-		 HAL_Delay(500); //
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

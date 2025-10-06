@@ -91,9 +91,10 @@ void debug_monitor_handler_c(ContextStateFrame *frame) {
     printf("lr   = 0x%08lx\r\n", frame->lr);
     printf("pc   = 0x%08lx\r\n", frame->return_address);
     printf("xpsr = 0x%08lx\r\n", frame->xpsr);
-    HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_4);
+
     // رفتار بر اساس نوع exception
     if (is_bkpt) {
+    	HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_4);
         // عبور از دستور bkpt (۲ بایت)
         frame->return_address += 2;
         // فعال کردن single-step
